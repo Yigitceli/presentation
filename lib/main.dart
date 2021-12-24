@@ -70,9 +70,67 @@ class PersonCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {        
     return Wrap(
-      children: <Widget>[Container()],
+      children: <Widget>[PersonCard()],
             
     );
     
+  }
+}
+
+class PersonCard extends StatelessWidget {
+  const PersonCard({Key? key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 110, vertical: 25),
+      child: Card(
+          child: SizedBox(
+        width: 700,
+        height: 200,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Expanded(
+            child: IntrinsicHeight(
+                child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage('profilPicture'),
+                    radius: 70,
+                  ),
+                ),
+                const VerticalDivider(),
+                Expanded(
+                  child: Container(                    
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Uid: 123'),
+                          const Divider(
+                            height: 30,
+                          ),
+                          Text('Name: Placeholder'),
+                          const Divider(
+                            height: 30,
+                          ),
+                          Text("Email: Placeholder"),
+                          const Divider(
+                            height: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )),
+          ),
+        ),
+      )),
+    );
   }
 }
