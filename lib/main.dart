@@ -172,8 +172,8 @@ class PersonCards extends StatelessWidget {
 }
 
 class PersonCard extends StatelessWidget {
-  const PersonCard({Key? key}) : super(key: key);
-  
+  const PersonCard({Key? key, required this.data}) : super(key: key);
+  final Map<String, dynamic> data;
   @override
   Widget build(BuildContext context) {
     return Container(
