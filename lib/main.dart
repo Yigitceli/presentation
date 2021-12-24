@@ -60,7 +60,19 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child:  Container()),
+                  child:  PersonCards()),
             )));
+  }
+}
+class PersonCards extends StatelessWidget {
+  const PersonCards({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {        
+    return Wrap(
+      children: <Widget>[Container()],
+            
+    );
+    
   }
 }
