@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
+  
 
 
 
@@ -44,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool isSignedIn = false;
   
 
   @override
@@ -51,6 +53,37 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          actions: <Widget>[
+            if (!isSignedIn)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.white, onPrimary: Colors.blue),
+                    onPressed: null,
+                    child: Row(children: const <Widget>[
+                      Icon(Icons.person, color: Colors.blue, size: 22),
+                      SizedBox(width: 10),
+                      Text('Login',
+                          style: TextStyle(fontWeight: FontWeight.bold))
+                    ])),
+              ),
+            const SizedBox(width: 10),
+            if (isSignedIn)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.white, onPrimary: Colors.blue),
+                    onPressed: null,
+                    child: Row(children: const <Widget>[
+                      Icon(Icons.person, color: Colors.blue, size: 22),
+                      SizedBox(width: 10),
+                      Text('Log Out',
+                          style: TextStyle(fontWeight: FontWeight.bold))
+                    ])),
+              ),
+          ],
           
         ),
         body: FractionallySizedBox(
