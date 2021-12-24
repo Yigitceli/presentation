@@ -56,10 +56,28 @@ class _MyHomePageState extends State<MyHomePage> {
       // Or use signInWithRedirect
       // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
   }
+
+  
   
 
   @override
   Widget build(BuildContext context) {
+    auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        if (isSignedIn == true) {
+          setState(() {
+            isSignedIn = false;
+          });
+        }        
+      } else {
+        if (isSignedIn == false) {
+          setState(() {
+            isSignedIn = true;
+          });
+        }
+        
+      }
+    });
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
