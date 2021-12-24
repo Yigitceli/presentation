@@ -146,12 +146,28 @@ class PersonCards extends StatelessWidget {
   const PersonCards({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {        
-    return Wrap(
-      children: <Widget>[PersonCard()],
-            
-    );
-    
+  Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> _usersStream =
+        FirebaseFirestore.instance.collection('Users').snapshots();
+
+    return StreamBuilder<QuerySnapshot>(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          return Wrap(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> personData =
+                  document.data()! as Map<String, dynamic>;
+              return PersonCard(data:personData);
+            }).toList(),
+          );
+        });
   }
 }
 
