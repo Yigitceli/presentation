@@ -46,6 +46,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool isSignedIn = false;
+
+  Future<UserCredential> signInWithGoogle() async {
+      // Create a new provider
+    GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+      // Once signed in, return the UserCredential
+    return await auth.signInWithPopup(googleProvider);
+      // Or use signInWithRedirect
+      // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
+  }
   
 
   @override
@@ -60,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.white, onPrimary: Colors.blue),
-                    onPressed: null,
+                    onPressed: signInWithGoogle,
                     child: Row(children: const <Widget>[
                       Icon(Icons.person, color: Colors.blue, size: 22),
                       SizedBox(width: 10),
@@ -75,7 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.white, onPrimary: Colors.blue),
-                    onPressed: null,
+                    onPressed: () async{
+                      await FirebaseAuth.instance.signOut();
+                    },
                     child: Row(children: const <Widget>[
                       Icon(Icons.person, color: Colors.blue, size: 22),
                       SizedBox(width: 10),
