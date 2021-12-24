@@ -191,7 +191,7 @@ class PersonCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage('profilPicture'),
+                    backgroundImage: NetworkImage(data['profilPicture']),
                     radius: 70,
                   ),
                 ),
@@ -203,15 +203,15 @@ class PersonCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Text('Uid: 123'),
+                          Text('Uid: ${data['uid']}'),
                           const Divider(
                             height: 30,
                           ),
-                          Text('Name: Placeholder'),
+                          Text('Name: ${data['displayName']}'),
                           const Divider(
                             height: 30,
                           ),
-                          Text("Email: Placeholder"),
+                          Text("Email: ${data['email']}"),
                           const Divider(
                             height: 30,
                           ),
