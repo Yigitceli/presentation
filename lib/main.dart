@@ -49,15 +49,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        
-      ),
-      body: const Center(
-        
-        
-      )
-       // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+          
+        ),
+        body: FractionallySizedBox(
+            widthFactor: 1,
+            heightFactor: 1,
+            child: SingleChildScrollView(
+              child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child:  Container()),
+            )));
   }
 }
