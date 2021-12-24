@@ -57,6 +57,21 @@ class _MyHomePageState extends State<MyHomePage> {
       // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
   }
 
+  Future<void> addUser(user) {
+    // Call the user's CollectionReference to add a new user
+    return FirebaseFirestore.instance
+        .collection('Users')
+        .doc(user.uid)
+        .set({
+          'uid': user.uid,
+          'displayName': user.displayName,
+          'email': user.email,
+          'profilPicture': user.photoURL,
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
   
   
 
@@ -75,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             isSignedIn = true;
           });
         }
-        
+        addUser(user);
       }
     });
     return Scaffold(
